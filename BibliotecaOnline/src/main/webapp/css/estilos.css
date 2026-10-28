@@ -245,6 +245,26 @@ h1::after {
     border-color: var(--cor-media);
 }
 
+/* Chip de categoria clicável (filtro) */
+a.chip {
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
+}
+
+/* Categoria atualmente selecionada no filtro */
+.chip-ativo, .chip-ativo:hover {
+    background-color: var(--cor-sobresalente);
+    color: var(--branco);
+    border-color: var(--cor-sobresalente);
+}
+
+/* Aviso "Exibindo livros da categoria X" */
+.filtro-info {
+    margin: -12px 0 20px;
+    color: var(--cor-escura);
+}
+
 /* ---------- Tabela de livros ---------- */
 .table-container {
     margin-top: 10px;
