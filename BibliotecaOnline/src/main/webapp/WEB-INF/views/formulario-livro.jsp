@@ -7,9 +7,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Livro - Biblioteca</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
 </head>
 <body>
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="list">
+            <span class="brand-icon">📚</span> Biblioteca Online
+        </a>
+        <nav>
+            <a href="list" class="btn btn-secondary btn-small">← Voltar para Lista</a>
+        </nav>
+    </div>
+</header>
+
 <div class="container">
     <div class="form-container">
         <h1>
@@ -50,8 +61,8 @@
             </div>
 
             <div class="form-group">
-                <label for="anoPublicacao">Ano de Publicação</label>
-                <input type="number" id="anoPublicacao" name="anoPublicacao" value="${livro.anoPublicacao}" placeholder="Ex: 2024" min="1000" max="2030" />
+                <label for="anoPublicacao">Ano de Publicação *</label>
+                <input type="number" id="anoPublicacao" name="anoPublicacao" value="${livro.anoPublicacao}" placeholder="Ex: 2024" min="1000" max="2030" required />
             </div>
 
             <div class="form-group">
@@ -66,5 +77,9 @@
         </form>
     </div>
 </div>
+
+<footer class="footer">
+    Biblioteca Online — Trabalho Prático 03 &middot; Java JSP + Apache Tomcat
+</footer>
 </body>
 </html>
