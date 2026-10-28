@@ -10,7 +10,7 @@ public class ConnectionFactory {
         return DriverManager.getConnection(
                 "jdbc:mysql://localhost:3306/biblioteca_db?useTimezone=true&serverTimezone=UTC",
                 "root",
-                "Andrade.Miguel2B"
+                "sua_senha"
         );
     }
 }
