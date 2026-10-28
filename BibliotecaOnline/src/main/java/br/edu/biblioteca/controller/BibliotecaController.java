@@ -80,7 +80,15 @@ public class BibliotecaController extends HttpServlet {
     // Ações de Visualização (Forward)
     private void list(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Livro> livros = dao.getLista();
+        // Filtro por categoria (botões de categoria da página): /list?categoria=Economia
+        String categoria = request.getParameter("categoria");
+        List<Livro> livros;
+        if (categoria == null || categoria.isBlank()) {
+            livros = dao.getLista();
+        } else {
+            livros = dao.getListaPorCategoria(categoria);
+        }
+        request.setAttribute("categoriaAtual", categoria);
         request.setAttribute("livros", livros);
         request.getRequestDispatcher("/WEB-INF/views/lista-livros.jsp")
                 .forward(request, response);

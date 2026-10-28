@@ -28,14 +28,22 @@
 
     <div class="categorias">
         <strong>Categorias disponíveis:</strong>
-        <span class="chip">Economia</span>
-        <span class="chip">Empreendedorismo</span>
-        <span class="chip">Psicologia</span>
-        <span class="chip">Administração</span>
-        <span class="chip">Direito</span>
-        <span class="chip">Sociologia</span>
-        <span class="chip">Teologia</span>
+        <a href="list" class="chip ${empty categoriaAtual ? 'chip-ativo' : ''}">Todos</a>
+        <a href="list?categoria=Economia" class="chip ${categoriaAtual eq 'Economia' ? 'chip-ativo' : ''}">Economia</a>
+        <a href="list?categoria=Empreendedorismo" class="chip ${categoriaAtual eq 'Empreendedorismo' ? 'chip-ativo' : ''}">Empreendedorismo</a>
+        <a href="list?categoria=Psicologia" class="chip ${categoriaAtual eq 'Psicologia' ? 'chip-ativo' : ''}">Psicologia</a>
+        <a href="list?categoria=Administracao" class="chip ${categoriaAtual eq 'Administração' or categoriaAtual eq 'Administracao' ? 'chip-ativo' : ''}">Administração</a>
+        <a href="list?categoria=Direito" class="chip ${categoriaAtual eq 'Direito' ? 'chip-ativo' : ''}">Direito</a>
+        <a href="list?categoria=Sociologia" class="chip ${categoriaAtual eq 'Sociologia' ? 'chip-ativo' : ''}">Sociologia</a>
+        <a href="list?categoria=Teologia" class="chip ${categoriaAtual eq 'Teologia' ? 'chip-ativo' : ''}">Teologia</a>
     </div>
+
+    <c:if test="${not empty categoriaAtual}">
+        <p class="filtro-info">
+            Exibindo livros da categoria <strong>${categoriaAtual}</strong>
+            &middot; <a href="list">Ver todos os livros</a>
+        </p>
+    </c:if>
 
     <!-- Busca simples no navegador (sem precisar alterar o Servlet) -->
     <div class="search-bar">

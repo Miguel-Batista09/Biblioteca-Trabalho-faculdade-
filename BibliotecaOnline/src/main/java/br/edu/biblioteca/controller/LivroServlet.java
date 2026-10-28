@@ -67,10 +67,17 @@ public class LivroServlet extends HttpServlet {
         }
     }
 
-    /** Lista todos os livros (encaminha para a página de listagem). */
+    /** Lista todos os livros (ou apenas os de uma categoria, se informada). */
     private void listar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setAttribute("livros", dao.getLista());
+        // Filtro por categoria (botões de categoria da página): /livros?categoria=Economia
+        String categoria = request.getParameter("categoria");
+        if (categoria == null || categoria.isBlank()) {
+            request.setAttribute("livros", dao.getLista());
+        } else {
+            request.setAttribute("livros", dao.getListaPorCategoria(categoria));
+        }
+        request.setAttribute("categoriaAtual", categoria);
         request.getRequestDispatcher("/WEB-INF/views/lista-livros.jsp")
                 .forward(request, response);
     }

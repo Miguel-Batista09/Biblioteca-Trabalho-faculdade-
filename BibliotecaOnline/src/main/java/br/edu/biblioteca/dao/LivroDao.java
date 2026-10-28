@@ -52,6 +52,32 @@ public class LivroDao {
         }
     }
 
+    // Retorna apenas os livros da categoria informada (filtro dos botões de categoria).
+    // Usa PreparedStatement para evitar SQL Injection.
+    public List<Livro> getListaPorCategoria(String categoria) {
+        String sql = "SELECT * FROM livros WHERE categoria = ?";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, categoria);
+            try (ResultSet rs = stmt.executeQuery()) {
+
+                List<Livro> livros = new ArrayList<>();
+                while (rs.next()) {
+                    Livro livro = new Livro();
+                    livro.setId(rs.getLong("id"));
+                    livro.setTitulo(rs.getString("titulo"));
+                    livro.setAutor(rs.getString("autor"));
+                    livro.setCategoria(rs.getString("categoria"));
+                    livro.setAnoPublicacao(rs.getInt("ano_publicacao"));
+                    livro.setDescricao(rs.getString("descricao"));
+                    livros.add(livro);
+                }
+                return livros;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public Livro buscaPorId(Long id) {
         String sql = "SELECT * FROM livros WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
