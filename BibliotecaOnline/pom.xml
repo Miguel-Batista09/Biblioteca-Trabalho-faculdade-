@@ -45,6 +45,8 @@
     </dependencies>
 
     <build>
+        <!-- Nome do WAR: BibliotecaOnline.war -> contexto /BibliotecaOnline -->
+        <finalName>BibliotecaOnline</finalName>
         <plugins>
             <!-- Plugin obrigatório para compilar e empacotar o arquivo WAR -->
             <plugin>
@@ -54,29 +56,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <dependency>
-        <groupId>jakarta.servlet.jsp.jstl</groupId>
-        <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-        <version>3.0.0</version>
-    </dependency>
-    <dependency>
-        <groupId>org.glassfish.web</groupId>
-        <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-        <version>3.0.0</version>
-    </dependency>
-
-    <!-- API de Tags do Jakarta -->
-    <dependency>
-        <groupId>jakarta.servlet.jsp.jstl</groupId>
-        <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-        <version>3.0.0</version>
-    </dependency>
-
-    <!-- Implementação física do JSTL (GlassFish) -->
-    <dependency>
-        <groupId>org.glassfish.web</groupId>
-        <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-        <version>3.0.1</version>
-    </dependency>
 </project>
