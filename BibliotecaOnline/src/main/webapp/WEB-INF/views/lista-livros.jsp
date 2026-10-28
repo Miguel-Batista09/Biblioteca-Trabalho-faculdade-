@@ -7,15 +7,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Livros - Biblioteca</title>
-    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
 </head>
 <body>
+<header class="topbar">
+    <div class="topbar-inner">
+        <a class="brand" href="list">
+            <span class="brand-icon">📚</span> Biblioteca Online
+        </a>
+        <nav>
+            <a href="list" class="btn btn-secondary btn-small">Início</a>
+            <a href="new" class="btn btn-primary btn-small">+ Novo Livro</a>
+        </nav>
+    </div>
+</header>
+
 <div class="container">
     <h1>📚 Biblioteca Online</h1>
     <p class="subtitle">Seu acervo digital de conhecimento</p>
 
     <div class="categorias">
-        <strong>Categorias disponíveis:</strong> Economia, Empreendedorismo, Psicologia, Administração, Direito, Sociologia, Teologia.
+        <strong>Categorias disponíveis:</strong>
+        <span class="chip">Economia</span>
+        <span class="chip">Empreendedorismo</span>
+        <span class="chip">Psicologia</span>
+        <span class="chip">Administração</span>
+        <span class="chip">Direito</span>
+        <span class="chip">Sociologia</span>
+        <span class="chip">Teologia</span>
+    </div>
+
+    <!-- Busca simples no navegador (sem precisar alterar o Servlet) -->
+    <div class="search-bar">
+        <input type="text" id="buscaLivros" placeholder="🔍 Buscar por título ou autor..." onkeyup="filtrarTabela()" />
     </div>
 
     <a href="new" class="btn btn-primary">+ Cadastrar Novo Livro</a>
@@ -44,7 +68,7 @@
                         <tr>
                             <td><strong>${livro.titulo}</strong></td>
                             <td>${livro.autor}</td>
-                            <td>${livro.categoria}</td>
+                            <td><span class="badge">${livro.categoria}</span></td>
                             <td>${livro.anoPublicacao}</td>
                             <td>
                                 <div class="actions">
@@ -60,5 +84,21 @@
         </c:choose>
     </div>
 </div>
+
+<footer class="footer">
+    Biblioteca Online — Trabalho Prático 03 &middot; Java JSP + Apache Tomcat
+</footer>
+
+<script>
+    // Filtro simples da tabela (client-side, não altera o Servlet)
+    function filtrarTabela() {
+        const termo = document.getElementById('buscaLivros').value.toLowerCase();
+        const linhas = document.querySelectorAll('tbody tr');
+        linhas.forEach(linha => {
+            const texto = linha.innerText.toLowerCase();
+            linha.style.display = texto.includes(termo) ? '' : 'none';
+        });
+    }
+</script>
 </body>
 </html>
